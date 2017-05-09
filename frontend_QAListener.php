@@ -7,7 +7,8 @@ require_once('rabbitMQLib.inc');
 function deployFrontendPackage($request)
 {
 	echo "\nRecieved Request: Installing backend package...\n";
-	shell_exec('sh installFrontend.sh'); 
+	# shell_exec('sh installFrontend.sh');
+	shell_exec('sh installFronend.sh' . $reuqest['packageTar']);
 	echo "Success!\n";
 }
 

@@ -1,13 +1,14 @@
 echo "UNZIP BUNDLE_FE"
 
-packageNum=`php currentPackage.php | xargs`
+# packageNum=`php currentPackage.php | xargs`
+package="$1"
 
 mkdir $HOME/Packages/Unzip/
 cd $HOME/Packages/Unzip/
 
-tar -xzf $HOME/Packages/frontendPackage-v"$packageNum".tar.gz -C /home/uziar/Packages/Unzip
+tar -xzf $HOME/Packages/$package -C /home/uziar/Packages/Unzip
 
-sudo cp -a $HOME/Packages/frontend/Unzip/. /var/www/html/
+sudo cp -a $HOME/Packages/Unzip/. /var/www/html/
 
 echo -e "\n"
 echo "Success"
@@ -15,4 +16,8 @@ echo "Success"
 rm -r $HOME/Packages/frontend/Unzip
 
 
+echo "Adjusting RabbitMQ .ini..."
 
+sed -i '2s/.*/BROKER_HOST = 192.168.2.20/g' /var/www/html/testRabbitMQ.ini
+
+echo "Frontend Package is sucessfully installed!"
