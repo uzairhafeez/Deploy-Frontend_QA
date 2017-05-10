@@ -6,9 +6,11 @@ require_once('rabbitMQLib.inc');
 
 function deployFrontendPackage($request)
 {
-	echo "\nRecieved Request: Installing backend package...\n";
+	echo "\nRecieved Request: Installing frontend package...\n";
 	# shell_exec('sh installFrontend.sh');
 	shell_exec('sh installFronend.sh' . $reuqest['packageTar']);
+	shell_exec('sudo service apache2 restart');
+	echo "restarted Apache";
 	echo "Success!\n";
 }
 
